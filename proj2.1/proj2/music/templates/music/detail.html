@@ -1,0 +1,67 @@
+
+{% extends 'music/base.html' %}
+
+{% block login %}
+<ul class="nav navbar-nav navbar-right nav navbar-collapse">
+
+
+         <li>
+            {% if login != '' %}
+            <a href="{% url 'music:logout' %}"><span class="glyphicon glyphicon-off" area-hidden="true"></span>&nbsp; Logout</a>
+            {% endif %}
+        </li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+
+
+
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+     <div class="col-12">
+
+        <div class="col-6">
+
+   <img style="height: 80px; width: 80px" src={{ album.album_logo.url }}>
+            <h1>Album Title : {{ album.album_title }}</h1>
+    <h3> Album Artist : {{ album.artist }}</h3>
+            <form action="{% url 'music:add_song' %}" method="post">
+            <button type="submit" class="btn btn-success">Add Song</button>
+                <input type="text" value="{{ album.album_id }}" style="display: none"name="idalbum">
+
+        {% csrf_token %}
+        </form>
+
+        </div>
+     </div>
+    <form action="{% url 'music:favorite' album.id %}" method="post">
+
+        {% csrf_token %}
+       <h3> Songs in Album </h3>
+    <div class="col-12">
+
+        <div class="col-6">
+
+             {% for song in album.song_set.all %}
+
+
+            <input type="radio" id="song{{ forloop.counter }}"name="song" value="{{ song.id }}">
+            <label for="song{{ forloop.counter }}">{{ song.song_title }}
+            {% if song.is_favorite%}
+                <img src="/home/usman/django/proj2/music/static/music/images/a.png">
+            {% endif %}
+
+            </label><br>
+            <input type="submit" value="Favorite">
+
+        {% endfor %}
+        </div>
+    </div>
+
+
+
+
+    </form>
+{% endblock %}

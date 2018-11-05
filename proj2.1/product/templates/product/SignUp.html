@@ -1,0 +1,31 @@
+{% extends 'product/base.html' %}
+
+<title>Updation Form</title>
+
+{% block body %}
+    <div class="container-fluid" style="margin-left: 340px;margin-top: 130px">
+        <div class="row">
+            <div class="col-sm-12 col-md-7">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h2>Update Profile</h2>
+                        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            {% include 'product/form.template.html' %}
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class = "btn btn-success focus" >Update</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

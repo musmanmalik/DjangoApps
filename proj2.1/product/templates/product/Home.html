@@ -1,0 +1,160 @@
+{% extends 'product/base.html' %}
+
+{% block body %}
+    <script>
+    function commentAdded(that) {
+        if ($(that).closest("div#my_container").find("input[class='commenthere']").val() == null || $(that).closest("div#my_container").find("input[class='commenthere']").val() == null == "") {
+            alert("Please Add some text")
+            event.preventDefault()
+        }
+        else {
+            alert("Comment Added")
+        }
+    }
+    function UpdateRating(that) {
+        var product_id = $(that).closest("div#my_container").find("input[class='pd_id']").val()
+
+       $.ajax({
+       url: '{% url 'product:rate' %}',
+       data: {
+         'product_id': product_id,
+           'value' :parseFloat($(that).val())
+       },
+       dataType: 'json',
+       success: function (data) {
+             if (data.u_rate) {
+                 $(that).closest("div.row, h2#rateh").find("h2[class='bold padding-bottom-7']").text(data.u_rate)
+             }
+
+       },
+       error: function () {
+           alert("Error occured");
+       }
+      });
+        $(that).closest('.row *').prop('disabled',true);
+    }
+    function  getcomments(that) {
+       {#alert($(that).closest("div#my_container").find("input[class='pd_id']").val());#}
+
+        {#console.log($(this))#}
+        var product_id = $(that).closest("div#my_container").find("input[class='pd_id']").val()
+        $.ajax({
+        url: '{% url 'product:comment' %}',
+        data: {
+          'product_id': product_id
+        },
+        dataType: 'json',
+        success: function (data) {
+            var comments = data.comments
+            console.log(data)
+          for (comment in comments) {
+              if (comments[comment]!=null && comments[comment]!="") {
+            $(that).closest("div.Container_Comment").append(comments[comment])
+               $(that).closest("div.Container_Comment").append('<br>')
+          }
+          }
+        },
+        error: function () {
+            alert("Error occured");
+        }
+      });
+          $(that).attr("disabled", true);
+    }
+
+    </script>
+<body>
+<div class="container">
+    <div class="row" style="margin-top:50px" >
+
+                {% for product in products %}
+                 {% csrf_token %}
+               <div class="col-xs-12 col-sm-4" id="my_container">
+                 <form action="{% url 'product:updateproduct' product.id %}"method="post" style="display: inline">
+                     {% csrf_token %}
+                <div class="panel panel-info">
+                  <div class="panel-heading">Product#{{ product.id}}</div>
+                  <div class="panel-body " >
+                      <img style="height: 100px; width: 230px" src="/media/{{ product.PicUrl }}">
+                      <h2>Name : {{ product.Name }}</h2>
+                      <h4>Price : {{ product.Price }}</h4>
+                      <h5>Description : {{ product.Description }}</h5>
+
+                      {% if request.user.is_superuser %}
+
+
+
+                    <button type="submit" class="btn btn-success">Update</button>
+
+                 </form>
+
+               <form action="{%  url 'product:delete' product.id %}"method="post" style="display: inline">
+                     {% csrf_token %}
+
+                      <button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                   {% endif %}
+                       </form>
+                  {% if request.user.is_authenticated%}
+                            {%  if request.user.is_superuser%}
+
+                                {% else %}
+                                 <form action="{%  url 'product:send' product.id %}"method="post" style="display: inline">
+                                     {% csrf_token %}
+                                  <input type="text" name="email" placeholder="Email" class="col-6" required></input>
+                                <button type="submit" class="btn btn-success col-6">Email To Friend</button>
+
+                                 </form>
+
+                            {% endif %}
+                         {% endif %}
+
+                   <div class="Container_Comment">
+                <form action="{%  url 'product:comment' product.id %}"method="post" style="display: inline">
+                     {% csrf_token %}
+                        <br>
+                    <br>
+                    <input name = "product_id" type="text" value="{{ product.id }}" style="display: none" class="pd_id">
+                    <textarea name="comment" placeholder="Comment here" class="commenthere" required></textarea>
+                    <button class="btn btn-light"type="submit" style="margin-bottom: 25px" onclick="commentAdded()">Add Comment </button>
+                   <button  value="{{ product.id }}" class="btn btn-success form-control"type="button" style="margin-bottom: 25px" onclick="getcomments(this)">Load Comment </button>
+
+                    {% if request.user.is_authenticated %}
+                        <div class="col-sm-12 row">
+				<div class="row">
+
+					<h2 class="bold padding-bottom-7" id="rateh"><small></small></h2>
+					<button type="button" class="btn btn-warning btn-sm" onclick="UpdateRating(this)" value="1">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true" ></span>
+					</button>
+					<button type="button" class="btn btn-warning btn-sm" onclick="UpdateRating(this)" value="2">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-warning btn-sm" onclick="UpdateRating(this)" value="3">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-warning btn-sm" onclick="UpdateRating(this)" value="4">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</button>
+					<button type="button" class="btn btn-warning btn-sm" onclick="UpdateRating(this)" value="5">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					</button>
+				</div>
+			</div>
+
+                    {% endif %}
+
+                    </div>
+
+                </form>
+                 </div>
+                </div>
+
+             </div>
+                {%endfor%}
+
+
+    </div>
+
+</div>
+{%endblock%}
+
+</body>

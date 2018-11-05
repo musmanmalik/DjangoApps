@@ -1,0 +1,18 @@
+{% extends 'music/base.html' %}
+
+{% block login %}
+<ul class="nav navbar-nav navbar-right nav navbar-collapse">
+
+
+         <li>
+            {% if login != '' %}
+            <a href="{% url 'music:logout' %}"><span class="glyphicon glyphicon-off" area-hidden="true"></span>&nbsp; Logout</a>
+            {% endif %}
+        </li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+<h4 class="focus">The Contact page</h4>
+
+{% endblock %}

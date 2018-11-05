@@ -1,0 +1,59 @@
+
+{% extends 'music/base.html' %}
+{% block login %}
+<ul class="nav navbar-nav navbar-right nav navbar-collapse">
+
+
+         <li>
+            {% if login != '' %}
+            <a href="{% url 'music:logout' %}"><span class="glyphicon glyphicon-off" area-hidden="true"></span>&nbsp; Logout</a>
+            {% endif %}
+        </li>
+
+    </ul>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid" style="margin-top: 50px" tabindex="-1" role="dialog" >
+
+                        {% if all_albums %}
+                            <ul>
+
+
+                              <!--  {% for album in all_albums %}
+                                <li><a href="/music/{{ album.id }}/">{{ album.album_title }}</a></li>
+                                {% endfor %}
+
+                            <h2>Without harcoded urls</h2>-->
+                            {% for album in all_albums %}
+                                 <div class="row">
+                                     <div class="col-sm-12">
+                                                       <div class="col-sm-4">
+                                            <li class="img-fluid"><img style="height: 70px; width: 160px" src="{{ album.album_logo.url }}"></li>
+                                          <!--  here we need to metion app name : view name that we have specified in view.py file-->
+                                            <li class="h1"><a href="{% url 'music:detail' album.id %}"> Album Title: {{ album.album_title }}</a></li>
+                                            <form action="{% url 'music:album-delete' album.id %}"method="post" style="display: inline">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="album-id" value="{{ album.id }}">
+                                                <button type="submit" class="btn btn-default btn-sm">
+                                                    <span class="glyphicon glyphicon-trash"></span>
+                                                </button>
+
+                                </form>
+                                  </div>
+                                     </div>
+                          </div>
+                                <br>     <br>
+
+                            {% endfor %}
+                             </ul>
+
+
+</div>
+
+
+    {% else %}
+        <h3>you don not have any album</h3>
+    {% endif %}
+{% endblock %}

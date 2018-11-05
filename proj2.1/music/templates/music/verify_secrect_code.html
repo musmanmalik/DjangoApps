@@ -1,0 +1,71 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}">
+ <link rel="stylesheet" type="text/css" href="{% static 'music/css/bootstrap-grid.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'music/css/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'music/css/bootstrap-reboot.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'music/css/font-awesome.min.css' %}">
+
+
+
+<script>
+    function verify()
+    {
+        if(document.getElementById("password").value==document.getElementById("new_password").value) {
+            alert("Correct values")
+
+        }
+
+    }
+
+
+</script>
+
+
+
+
+
+<div class="container-fluid">
+
+    <div class="container-fluid" style="margin-top: 160px" tabindex="-1" role="dialog" >
+        <div  class="modal-dialog" role="document">
+            <div cclass="modal-content">
+                <div class="panel panel-default">
+                      <a href="{% url 'login' %}" style="margin-left:440px" class="font-weight-bold">Login</a>
+                    <div class="panel-body" >
+
+
+
+                        <form class="form-horizontal" action="{% url 'music:verify' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div id="container" class="form-group">
+
+                                 <label for="code">Secret Code:</label>
+                                <input type="text" class="form-control" id="code"name="s_code" placeholder="Enter code here">
+                                <label for="email">Email :</label>
+                                <input type="text" class="form-control" id="email"name="email" placeholder="Enter email here">
+                                <label for="password">New Password :</label>
+                                <input type="password" class="form-control"  placeholder="New Password" name="password" id="password">
+                                 <label for="new_password">Conform Password :</label>
+                                <input type="password" class="form-control" placeholder="Re Enter Password" name="new_password" id="new_password">
+                                <br>
+                                <button type="submit" value="Click" class="btn-success form-control" onclick=" return verify()" style="height: 30px">Change Password
+                                </button>
+                                <h1 class="text-danger">{{ error }}</h1>
+
+                             </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+</div>
+
+

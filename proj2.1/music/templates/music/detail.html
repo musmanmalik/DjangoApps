@@ -1,0 +1,76 @@
+
+{% extends 'music/base.html' %}
+
+{% block login %}
+<ul class="nav navbar-nav navbar-right nav navbar-collapse">
+
+
+         <li>
+            {% if login != '' %}
+            <a href="{% url 'music:logout' %}"><span class="glyphicon glyphicon-off" area-hidden="true"></span>&nbsp; Logout</a>
+            {% endif %}
+        </li>
+    </ul>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid" style="margin-top: 50px" tabindex="-1" role="dialog" >
+        <div  class="modal-dialog" role="document">
+            <div cclass="modal-content">
+                <div class="panel panel-default">
+                    <div class="panel-body"  style="height: ">
+
+
+
+                                {% if error_message %}
+                                    <p><strong>{{ error_message }}</strong></p>
+                                {% endif %}
+                                 <div class="col-12">
+
+                                    <div class="col-6">
+
+                               <img style="height: 70px; width: 160px" src={{ album.album_logo.url }}>
+                                        <h1>Album Title:{{ album.album_title }}</h1>
+                                <h3> Album Artist : {{ album.artist }}</h3>
+                                            <a href="{% url 'music:album-update' album.id %}" class="button">Update Album</a>
+                                            <br>
+
+                                             <br>
+
+
+                                        <form action="{% url 'music:add_song' album.id%}" method="post">
+                                        <button type="submit" class="btn btn-success">Add Song</button>
+
+
+                                    {% csrf_token %}
+                                    </form>
+
+                                    </div>
+                                 </div>
+                            <form action="" method="post">
+
+                                {% csrf_token %}
+                               <h3 style="margin-left: 50px"> Songs in Album :- </h3>
+                            <div class="col-12" style="margin-left: 50px">
+
+                                <div class="col-6">
+
+                                     {% for song in album.song_set.all %}
+
+                                    <label for="{{ forloop.counter }} is :">Song is :{{ song.song_title }} of : {{ song.singer_name }}
+
+                                    </label><br>
+                                          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tgbNymZ7vqY">Video Here</iframe>
+
+                                {% endfor %}
+                                </div>
+                            </div>
+
+                            </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id="container" class="fa-align-left">
+        <span>Please enter secret code: </span>
+        <input type="text" placeholder="Enter code here" class="tab-content" name="s_code">
+        <button type="submit" value="Click" class="btn-success">Click
+        </button>
+<h1 class="text-danger">{{ error }}</h1>
+
+    </div>
+
+
+</form>

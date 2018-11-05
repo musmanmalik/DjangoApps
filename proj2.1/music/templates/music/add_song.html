@@ -1,0 +1,48 @@
+{% extends 'music/base.html' %}
+
+<title>Add Song</title>
+
+{% block login %}
+<ul class="nav navbar-nav navbar-right nav navbar-collapse">
+
+
+         <li>
+            {% if login != '' %}
+            <a href="{% url 'music:logout' %}"><span class="glyphicon glyphicon-off" area-hidden="true"></span>&nbsp; Logout</a>
+            {% endif %}
+        </li>
+    </ul>
+{% endblock %}
+{% block body %}
+
+
+    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: 160px" tabindex="-1" role="dialog" >
+        <div  class="modal-dialog" role="document">
+            <div cclass="modal-content">
+                <div class="panel panel-default fo">
+                    <div class="panel-body" >
+
+                                                <h1>Add Song</h1>
+                                                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                     <input type="text" style="display: none" value="{{ al }}">
+                                                    {% include 'music/form.template.html' %}
+                                                    <div class="form-group">
+                                                        <div class="col-sm-offset-2 col-sm-10">
+                                                            <button type="submit" class = "btn btn-success">Add</button>
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+
+{% load staticfiles %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}">
+ <link rel="stylesheet" type="text/css" href="{% static 'music/css/bootstrap-grid.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'music/css/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'music/css/bootstrap-reboot.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'music/css/font-awesome.min.css' %}">
+
+
+<script>
+
+
+function addhtml() {
+
+
+
+
+
+}
+
+</script>
+
+<body class="login">
+
+
+
+{% block login %}
+
+
+{% endblock %}
+
+<title >Login</title>
+{% block body %}
+    <div class="container-fluid" style="margin-top: 200px" tabindex="-1" role="dialog" >
+        <div  class="modal-dialog" role="document">
+            <div cclass="modal-content">
+                <div class="panel panel-default">
+                    <div class="panel-body"  style="height: ">
+
+                        <form class="form-horizontal" action="{% url 'music:login' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <h1 class="modal-title">Login</h1>
+                            {% include 'music/form.template.html' %}
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class = "btn btn-success" style="width: 100px; height: 30px">Login</button>
+                                </div>
+                            </div>
+
+                        </form>
+                        <a class="tab-content" href="{% url 'music:forgot_password' %}" id="link1" in onclick="addhtml()"> Forgot password</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+<span class="alert-danger" style="font-max-size: large">{{ error }}</span>
+    </div>
+
+</body>
+
+
+{% endblock %}
