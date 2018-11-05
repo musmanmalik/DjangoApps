@@ -2,8 +2,10 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 
+
 def setUp(self):
     self.client = Client()
+
 
 
 def test_registration(self):
@@ -22,3 +24,11 @@ def test_blank_data(self):
         'email': ['required'],
         'password': ['required'],
     })
+
+
+def test_get_authors(self):
+    user = User.objects.create(
+        username='arbisoft',
+        email='	m.usman@arbisoft.com'
+    )
+    self.assertEqual(User.objects.filter(id=0), user)
