@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b32bb743-6c8f-4c02-b892-83721ef2d7b4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music/tests.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/product/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/tests.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -147,22 +149,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="3" />
+          <entry key="py" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="3" />
+          <entry key="Python" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="100" />
+          <entry key="py" value="185" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="100" />
+          <entry key="Python" value="185" />
         </counts>
       </usages-collector>
     </session>
@@ -175,8 +177,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/product/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="105" column="44" selection-start-line="105" selection-start-column="10" selection-end-line="105" selection-end-column="44" />
+            <state relative-caret-position="145">
+              <caret line="105" column="44" lean-forward="true" selection-start-line="105" selection-start-column="44" selection-end-line="105" selection-end-column="44" />
               <folding>
                 <element signature="e#0#59#0" expanded="true" />
                 <marker date="1540810048945" expanded="true" signature="1009:1071" ph="..." />
@@ -191,11 +193,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/product/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+            <state relative-caret-position="303">
+              <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
-                <marker date="1541422112285" expanded="true" signature="208:213" ph="..." />
+                <marker date="1541423742314" expanded="true" signature="252:257" ph="..." />
               </folding>
             </state>
           </provider>
@@ -225,8 +227,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/product/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="14" column="27" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="31" />
+            <state relative-caret-position="180">
+              <caret line="13" column="50" lean-forward="true" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -393,19 +395,6 @@
             <path>
               <item name="proj2.1" type="b2602c69:ProjectViewProjectNode" />
               <item name="proj2.1" type="462c0819:PsiDirectoryNode" />
-              <item name="product" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="proj2.1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="proj2.1" type="462c0819:PsiDirectoryNode" />
-              <item name="product" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="product" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="proj2.1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="proj2.1" type="462c0819:PsiDirectoryNode" />
               <item name="proj2" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -447,7 +436,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Unknown.Test: 475538702">
+  <component name="RunManager" selected="Python.tests (1)">
     <configuration name="Test: " type="DjangoTestsConfigurationType" factoryName="Django tests">
       <module name="proj2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -489,6 +478,48 @@
       <method v="2" />
     </configuration>
     <configuration name="add_song.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/proj2/music/templates/music/add_song.html">
+      <method v="2" />
+    </configuration>
+    <configuration name="tests (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="proj2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/product" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/product/tests.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tests" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="proj2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/music" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/music/tests.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -539,9 +570,13 @@
     </configuration>
     <list>
       <item itemvalue="Python.views" />
+      <item itemvalue="Python.tests" />
+      <item itemvalue="Python.tests (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.tests (1)" />
+        <item itemvalue="Python.tests" />
         <item itemvalue="Python.views" />
       </list>
     </recent_temporary>
@@ -592,7 +627,7 @@
       <window_info id="Favorites" order="2" sideWeight="0.51171875" side_tool="true" weight="0.14167294" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32885906" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996232" weight="0.36510068" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996232" weight="0.36473754" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -651,13 +686,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/music/templates/music/contact.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="13" lean-forward="true" selection-start-line="2" selection-end-line="12" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.virtualenvs/proj2/lib/python3.6/site-packages/django/contrib/sessions/backends/base.py" />
     <entry file="file://$USER_HOME$/.virtualenvs/proj2/lib/python3.6/site-packages/django/urls/base.py" />
     <entry file="file://$USER_HOME$/.virtualenvs/proj2/lib/python3.6/site-packages/django/db/models/manager.py" />
@@ -815,13 +843,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/product/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="14" column="27" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/product/templates/product/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1515">
@@ -853,10 +874,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/music/tests.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="13" column="50" lean-forward="true" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/product/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="105" column="44" selection-start-line="105" selection-start-column="10" selection-end-line="105" selection-end-column="44" />
+        <state relative-caret-position="145">
+          <caret line="105" column="44" lean-forward="true" selection-start-line="105" selection-start-column="44" selection-end-line="105" selection-end-column="44" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
             <marker date="1540810048945" expanded="true" signature="1009:1071" ph="..." />
@@ -869,11 +900,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/product/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        <state relative-caret-position="303">
+          <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
-            <marker date="1541422112285" expanded="true" signature="208:213" ph="..." />
+            <marker date="1541423742314" expanded="true" signature="252:257" ph="..." />
           </folding>
         </state>
       </provider>
