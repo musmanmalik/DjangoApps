@@ -12,3 +12,13 @@ def test_registration(self):
     # test req method GET
     response = self.client.get(url)
     self.assertEqual(response.status, 200)
+
+
+def test_blank_data(self):
+    form = RegisterForm({}, entry=self.entry)
+    self.assertFalse(form.is_valid())
+    self.assertEqual(form.errors, {
+        'username': ['required'],
+        'email': ['required'],
+        'password': ['required'],
+    })
