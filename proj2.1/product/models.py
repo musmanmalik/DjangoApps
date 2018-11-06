@@ -15,10 +15,16 @@ class Product(models.Model):
     UpdatedOn = models.DateTimeField(null=True)
     UpdatedBy = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.Name
+
 
 class Comment(models.Model):
     product = models.IntegerField(default=0)
     comment = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.comment
 
 
 class Rating(models.Model):

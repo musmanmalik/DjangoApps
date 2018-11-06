@@ -118,8 +118,12 @@ def sendtofriend(request, product_id):
         data = request.POST.dict()
         email = data['email']
         obj = Product.objects.filter(id=product_id).first()
-        send_mail('Product Invitation', 'This good is good for you: ' + str(obj.Name), email,
-                  [email], fail_silently=True)
+        # send_mail('Product Invitation', 'This good is good for you: ' + str(obj.Name), email,
+        #           [email], fail_silently=True)
+        subject = "Product Invitation"
+        message = "This is Good For You"
+        from_email = email
+        send_mail(subject,message,from_email,[from_email],fail_silently=True)
         return redirect('home')
     else:
         return redirect('home')
