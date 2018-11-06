@@ -1,13 +1,10 @@
-from unittest.mock import patch
-
+from unittest import mock
+from unittest.mock import patch, Mock
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse, reverse_lazy
-from django.utils.encoding import force_text
-from unittest import mock
 
-from product.forms import Comment
-from product.models import Product
+from product.forms import RegisterForm
 
 
 class Testing(TestCase):
@@ -15,29 +12,15 @@ class Testing(TestCase):
     def setUp(self):
         self.client = Client()
 
+    #Testing Request is Successful or not
     def test_registration(self):
         url = reverse_lazy('home')
         # test req method GET
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
-
-    # #to test weather the required feilds are missing or not
-    # def test_blank_data(self):
-    #     url = reverse_lazy('product:signup')
-    #     response = self.client.post(url, {})
-    #     self.assertEqual(response.status_code, 200)
-    #     exp_data = {
-    #         'error': True,
-    #         'errors': {
-    #             'username': 'This field is required',
-    #             'email': 'This field is required',
-    #             'password': 'This field is required',
-    #         }
-    #     }
-    #     self.assertEqual(exp_data, response.content)
-
-    def test_get_authors(self):
+    #Tedting Database based operation
+    def test_get_user(self):
         user = User.objects.create(
             username='arbisoft',
             email='	m.usman@arbisoft.com',
@@ -45,6 +28,7 @@ class Testing(TestCase):
         )
         self.assertEqual(User.objects.get(username='arbisoft'), user)
 
+    #For Testing Json Response
     def test_jsonresponse(self):
         url = reverse_lazy('product:comment')
         response = self.client.post(url)
@@ -56,6 +40,7 @@ class Testing(TestCase):
         print(User.objects.all().count())
         self.assertEqual(User.objects.all().count(), 0)
 
+    #Test For Template Verification
     def test_templateVerfication(self):
         url = reverse_lazy('home')
         # test req method GET
@@ -69,4 +54,23 @@ class Testing(TestCase):
         })
 
         self.assertEqual(mock_send_mail.called, False)
-       
+
+    @patch('product.views.Homeview.get_queryset')
+    def test_Home(self, get_queryset):
+        m = Mock()
+        m.return_value = "Nothing"
+        url = reverse_lazy('home')
+        self.assertEqual(get_queryset.called, False)
+        self.assertEqual(m(),"Nothing")
+
+
+    #Testing a form has valid Form data
+    def test_UserForm_valid(self):
+        form = RegisterForm(data={'username': "user", 'email': "user@mp.com", 'password': "user"})
+        self.assertTrue(form.is_valid())
+
+        # Testing a form has invalid Form data
+
+    def test_UserForm_invalid(self):
+        form = RegisterForm(data={'username': "", 'email': "user@mp.com", 'password': "user"})
+        self.assertFalse(form.is_valid())
