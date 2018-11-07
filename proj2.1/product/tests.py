@@ -2,6 +2,7 @@ from unittest import mock
 from unittest.mock import patch, Mock
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
+from .models import  Comment
 from django.urls import reverse, reverse_lazy
 
 from product.forms import RegisterForm
@@ -74,3 +75,17 @@ class Testing(TestCase):
     def test_UserForm_invalid(self):
         form = RegisterForm(data={'username': "", 'email': "user@mp.com", 'password': "user"})
         self.assertFalse(form.is_valid())
+
+    #test redirects
+    def test_redirects_to_home_page(self):
+        response = self.client.get('/product//' )
+        self.assertRedirects(response, '/')
+
+    #Adding Comment in Db With the help of Mock
+    @patch('product.views.Comment1')
+    def test_Add_Comment(self, mock_Comment1):
+        mock = Mock()
+        self.client.post('/product/comment/5', data={
+            'comment': 'Mock Comment'
+        })
+        mock()

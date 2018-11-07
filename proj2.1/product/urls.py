@@ -14,7 +14,7 @@ urlpatterns = [
     path('comments/', views.getcomment, name = "comment"),
     path('rate/', views.getrate, name = "rate"),
     path('<int:product_id>', views.sendtofriend, name="send"),
-
+    path('/', views.send_to_Home, name = '/'),
     path('updateprofile/<pk>', views.ProfileUpdate.as_view(), name = 'updateprofile'),
     path('deleteproduct/<pk>', views.ProductDelete.as_view(), name = 'delete')
 

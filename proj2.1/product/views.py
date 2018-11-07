@@ -99,6 +99,9 @@ def Comment1(request, product_id):
         obj.save()
         return redirect('home')
 
+def send_to_Home(request):
+    return redirect('/')
+
 
 def getcomment(request):
     print("function called")
