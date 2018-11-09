@@ -1,21 +1,11 @@
-from unittest import mock
 from unittest.mock import patch, Mock
-
-from django.http import request
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from product.forms import RegisterForm
-from django.contrib.auth import get_user_model, SESSION_KEY
-
-from product.models import Product
-
-User1 = get_user_model()
-
 
 
 class Testing(TestCase):
-
     def setUp(self):
         self.client = Client()
 
@@ -53,6 +43,7 @@ class Testing(TestCase):
         # test req method GET
         response = self.client.get(url)
         self.assertTemplateUsed(response, 'product/Home.html')
+
 
     @patch('product.views.Homeview.get_queryset')
     def test_HomeView(self, mock_get_queryset):
@@ -129,7 +120,6 @@ class Testing(TestCase):
             'password':'a'
         })
         self.assertEqual(response.status_code, 301)
-
         self.assertEqual(re, 100)
 
 
