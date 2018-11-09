@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-
 class Type(models.Model):
     TypeName = models.CharField(max_length=300)
 

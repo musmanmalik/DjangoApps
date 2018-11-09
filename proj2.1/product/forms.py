@@ -24,6 +24,7 @@ class AddProduct(forms.ModelForm):
         model = Product
         fields = ['Name', 'Price', 'Type', 'Description', 'UpdatedBy', 'PicUrl']
 
+
 class Comment(forms.ModelForm):
     class Meta:
         model = Comment

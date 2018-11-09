@@ -146,3 +146,8 @@ def getrate(request):
         'u_rate': str(round(o_point/t_point, 2))
     }
     return JsonResponse(data)
+
+
+#For Learming About Vie
+
+
