@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
@@ -99,6 +100,7 @@ def Comment1(request, product_id):
         obj.save()
         return redirect('home')
 
+
 def send_to_Home(request):
     return redirect('/')
 
@@ -106,7 +108,11 @@ def send_to_Home(request):
 def getcomment(request):
     print("function called")
     id = request.GET.get('product_id', None)
-    obj = Comment.objects.filter(product=id)
+    try:
+        obj = Comment.objects.filter(product=id)
+    except Comment.DoesNotExist:
+        raise ObjectDoesNotExist(('no product found for this id {}'.format(id)))
+
     data1 = []
     for proj in obj:
         data1.append(proj.comment)
@@ -146,6 +152,8 @@ def getrate(request):
         'u_rate': str(round(o_point/t_point, 2))
     }
     return JsonResponse(data)
+
+
 
 
 #For Learming About Vie

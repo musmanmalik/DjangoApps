@@ -3,6 +3,7 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from product.forms import RegisterForm
+from ddt import ddt, data, file_data, unpack
 
 
 class Testing(TestCase):
@@ -43,7 +44,6 @@ class Testing(TestCase):
         # test req method GET
         response = self.client.get(url)
         self.assertTemplateUsed(response, 'product/Home.html')
-
 
     @patch('product.views.Homeview.get_queryset')
     def test_HomeView(self, mock_get_queryset):
@@ -123,3 +123,33 @@ class Testing(TestCase):
         self.assertEqual(re, 100)
 
 
+#data drieven testing using dtt
+@ddt
+class FooTestCase(TestCase):
+    def test_undecorated(self):
+        self.assertTrue(2 < (24))
+
+    @data(3, 4, 12, 23)
+    def test_larger_than_two(self, value):
+        self.assertTrue(2 < value)
+
+    @data(1, -3, 2, 0)
+    def test_not_larger_than_two(self, value):
+        self.assertFalse(2 < value)
+
+    @file_data("josonfile.json")
+    def test_file_data_json_dict_dict(self, start, end, value):
+        self.assertLess(start, end)
+        self.assertLess(value, end)
+        self.assertGreater(value, start)
+
+    @data([3, 2], [4, 3], [5, 3])
+    @unpack
+    def test_list_extracted_into_arguments(self, first_value, second_value):
+        self.assertTrue(first_value > second_value)
+
+    @unpack
+    @data({'first': 1, 'second': 3, 'third': 2},
+          {'first': 4, 'second': 6, 'third': 5})
+    def test_dicts_extracted_into_kwargs(self, first, second, third):
+        self.assertTrue(first < third < second)
