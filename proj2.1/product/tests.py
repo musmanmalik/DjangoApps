@@ -3,12 +3,18 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from product.forms import RegisterForm
+from product import views
 from ddt import ddt, data, file_data, unpack
 
 
 class Testing(TestCase):
     def setUp(self):
         self.client = Client()
+
+    def test_HV(self):
+        x = views.Homeview()
+        print(x)
+        self.assertTrue(x)
 
     """Testing Request is Successful or not"""
     def test_registration(self):
@@ -68,11 +74,8 @@ class Testing(TestCase):
 
     @patch('product.views.Homeview.get_queryset')
     def test_Home(self, get_queryset):
-        m = Mock()
-        m.return_value = "Nothing"
         url = reverse_lazy('home')
         self.assertEqual(get_queryset.called, False)
-        self.assertEqual(m(),"Nothing")
 
     """"Testing a form has valid Form data"""
     def test_UserForm_valid(self):
@@ -105,16 +108,16 @@ class Testing(TestCase):
         })
 
     """Testing login View"""
-    @patch('product.views.login1')
+    @patch('product.views.login')
     @patch('product.views.authenticate')
     def test_returns_OK_when_user_found(
-            self, mock_authenticate, mock_login1
+            self, mock_authenticate, mock_login
     ):
         user = User.objects.create(username='a', password='a', email='a@gm.com')
         user.backend = ''  # required for auth_login to work
         mock_authenticate.return_value = user
-        mock_login1.return_value = 100
-        re = mock_login1()
+        mock_login.return_value = 100
+        re = mock_login()
         response = self.client.post('/product/login', data={
             'username': 'a',
             'password':'a'
@@ -123,7 +126,9 @@ class Testing(TestCase):
         self.assertEqual(re, 100)
 
 
-#data drieven testing using dtt
+"""data drieven testing using dtt"""
+
+
 @ddt
 class FooTestCase(TestCase):
     def test_undecorated(self):
@@ -153,3 +158,4 @@ class FooTestCase(TestCase):
           {'first': 4, 'second': 6, 'third': 5})
     def test_dicts_extracted_into_kwargs(self, first, second, third):
         self.assertTrue(first < third < second)
+
