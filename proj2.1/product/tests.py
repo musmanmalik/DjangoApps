@@ -6,10 +6,23 @@ from product.forms import RegisterForm
 from product import views
 from ddt import ddt, data, file_data, unpack
 
+from product.models import Comment
+
 
 class Testing(TestCase):
     def setUp(self):
         self.client = Client()
+
+    """Method that return Comment instance"""
+    def create_Comment_Object(self, comment="only a test"):
+        return Comment.objects.create(comment=comment)
+
+    """Model Testing"""
+
+    def test_Comment_Model_creation(self):
+        w = self.create_Comment_Object()
+        self.assertTrue(isinstance(w, Comment))
+        self.assertEqual('only a test', w.comment)
 
     def test_HV(self):
         x = views.Homeview()
