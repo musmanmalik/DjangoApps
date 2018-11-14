@@ -190,4 +190,9 @@ class FooTestCase(TestCase):
             fields = '__all__'
         self.assertEqual(list(ProfileUpdate().get_form_class().base_fields), ['username', 'email', 'password'])
 
+    """Testing Response Content Type"""
+
+    def test_content_type(self):
+        response = self.client.get(reverse_lazy('product:signup'))
+        self.assertEqual(response['Content-Type'], 'text/html; charset=utf-8')
 
