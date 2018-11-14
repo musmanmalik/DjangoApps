@@ -2,11 +2,13 @@ from unittest.mock import patch, Mock
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
+from django.views import View
+from django.views.generic import CreateView
 from product.forms import RegisterForm
 from product import views
 from ddt import ddt, data, file_data, unpack
-
-from product.models import Comment
+from product.models import Comment, Product
+from product.views import ProfileUpdate
 
 
 class Testing(TestCase):
@@ -26,7 +28,6 @@ class Testing(TestCase):
 
     def test_HV(self):
         x = views.Homeview()
-        print(x)
         self.assertTrue(x)
 
     """Testing Request is Successful or not"""
@@ -50,7 +51,6 @@ class Testing(TestCase):
         url = reverse_lazy('product:comment')
         response = self.client.post(url)
         self.assertEqual(response.status_code, 200)
-
         self.assertJSONEqual(response.content, {'comments': []})
 
     def test_verify_db(self):
@@ -145,7 +145,7 @@ class Testing(TestCase):
 @ddt
 class FooTestCase(TestCase):
     def test_undecorated(self):
-        self.assertTrue(2 < (24))
+        self.assertTrue(2 < 24)
 
     @data(3, 4, 12, 23)
     def test_larger_than_two(self, value):
@@ -171,4 +171,23 @@ class FooTestCase(TestCase):
           {'first': 4, 'second': 6, 'third': 5})
     def test_dicts_extracted_into_kwargs(self, first, second, third):
         self.assertTrue(first < third < second)
+
+    """Generic Views Test"""
+
+    def test_queryset(self):
+        res = self.client.get(reverse_lazy('home'))
+        self.assertEqual(res.status_code, 200)
+        self.assertTemplateUsed(res, 'product/Home.html')
+        self.assertEqual(list(res.context['products']), list(Product.objects.all()))
+        self.assertIsInstance(res.context['view'], View)
+        self.assertIsNone(res.context['paginator'])
+
+    """Testing model Form Fields"""
+
+    def test_create_view_all_fields(self):
+        class MyCreateView(CreateView):
+            model = User
+            fields = '__all__'
+        self.assertEqual(list(ProfileUpdate().get_form_class().base_fields), ['username', 'email', 'password'])
+
 
