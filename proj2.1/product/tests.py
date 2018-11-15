@@ -22,13 +22,13 @@ class Testing(TestCase):
     """Model Testing"""
 
     def test_Comment_Model_creation(self):
-        w = self.create_Comment_Object()
-        self.assertTrue(isinstance(w, Comment))
-        self.assertEqual('only a test', w.comment)
+        comment_instance = self.create_Comment_Object()
+        self.assertTrue(isinstance(comment_instance, Comment))
+        self.assertEqual('only a test', comment_instance.comment)
 
     def test_HV(self):
-        x = views.Homeview()
-        self.assertTrue(x)
+        is_successful = views.Homeview()
+        self.assertTrue(is_successful)
 
     """Testing Request is Successful or not"""
     def test_registration(self):
@@ -130,16 +130,16 @@ class Testing(TestCase):
         user.backend = ''  # required for auth_login to work
         mock_authenticate.return_value = user
         mock_login.return_value = 100
-        re = mock_login()
+        response1 = mock_login()
         response = self.client.post('/product/login', data={
             'username': 'a',
             'password':'a'
         })
         self.assertEqual(response.status_code, 301)
-        self.assertEqual(re, 100)
+        self.assertEqual(response1, 100)
 
 
-"""data drieven testing using dtt"""
+"""data driven testing using dtt"""
 
 
 @ddt

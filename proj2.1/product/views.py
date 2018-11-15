@@ -156,6 +156,5 @@ def getrate(request):
 
 
 
-#For Learming About Vie
 
 
