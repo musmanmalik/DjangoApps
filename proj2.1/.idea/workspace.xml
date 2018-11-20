@@ -4,11 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/music/views.py" line="164" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b32bb743-6c8f-4c02-b892-83721ef2d7b4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/proj2/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj2/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/proj2/urls.py" afterDir="false" />
-    </list>
+    <list default="true" id="b32bb743-6c8f-4c02-b892-83721ef2d7b4" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -388,7 +384,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="67" />
     <option name="width" value="909" />
     <option name="height" value="735" />
@@ -656,9 +652,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1373" height="875" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48828125" visible="true" weight="0.11851852" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48828125" visible="true" weight="0.11851852" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.51171875" side_tool="true" weight="0.14167294" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -672,7 +667,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" sideWeight="0.4996232" weight="0.32885906" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.23185185" side_tool="true" visible="true" weight="0.25572005" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.7681481" visible="true" weight="0.25572005" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.7681481" visible="true" weight="0.25572005" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3270525" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
