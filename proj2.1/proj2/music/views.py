@@ -1,8 +1,3 @@
-from django.contrib.auth.models import User
-from django.contrib.messages.storage import session
-from django.shortcuts import render
-from django.http import HttpResponse;
-from django.template import  loader
 from random import randint
 from django.shortcuts import render, get_object_or_404, redirect #for redirecting
 from django.views.generic.edit import CreateView, DeleteView, UpdateView # For Creating Model View
@@ -11,11 +6,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
 from .forms import UserForm, Add_Song, loginForm
 from django.core.mail import send_mail
-from .forms import forms
-from django.urls import resolvers,reverse_lazy #to redirect to other
+from django.urls import reverse_lazy #to redirect to other
 from .models import Album, Song
 from django.views import generic  # foR gENERIC views
-from django.contrib.auth.decorators import login_required
 # Create your views here.
 # def index(request):
 #     all_albums = Album.objects.all()
@@ -45,11 +38,14 @@ from django.contrib.auth.decorators import login_required
 
 #generic view
 
+
 class IndexView(generic.ListView):
     template_name = 'music/index.html'
     context_object_name = 'all_albums'
+
     def get_queryset(self):
         return Album.objects.all()
+
 
 class Forgot_Password(generic.View):
     template_name = 'music/forgot_password.html'
@@ -64,9 +60,6 @@ class Forgot_Password(generic.View):
         send_mail('Password Resetting', 'Your Password verification code is : '+str(code), 'm.usman@arbisoft.com', ['m.usman@arbisoft.com'], fail_silently=True)
 
         return render(request, 'music/verify_secrect_code.html')
-
-
-
 
 
 class Verify(generic.View):
@@ -88,8 +81,6 @@ class Verify(generic.View):
             return render(request, self.template_name, {'error':error})
 
 
-
-
 class ContactView(generic.ListView):
 
     template_name = 'music/contact.html'
@@ -104,14 +95,15 @@ class AlbumCreate(CreateView):
     fields = ['artist', 'album_title', 'genre', 'album_logo']
     success_url = reverse_lazy('music:index')
 
+
 class AlbumUpdate(UpdateView):
     model = Album
     fields = ['artist', 'album_title', 'genre', 'album_logo']
 
+
 class AlbumDelete(DeleteView):
     model = Album
     success_url = reverse_lazy('music:index')
-
 
 
 def index1(request):
@@ -132,6 +124,7 @@ def favorite(request, album_id):
         selected_song.save()
         return render(request, 'music/detail.html', {'album': album})
 
+
 def detail(request, album_id):
     if (request.session['login'] == ''):
         return render(request, 'music/login.html')
@@ -146,6 +139,8 @@ def detail(request, album_id):
 
         ########################################
         #Alternate of try except statement
+
+
         #album = get_object_or_404(Album, pk=album_id)
 def logout_view(request):
     logout(request)
@@ -155,12 +150,8 @@ def logout_view(request):
 
 
 class Add_Song(View):
-
-
-
     form_class = Add_Song
     template_name = 'music/add_song.html'
-
 
     def get(self,request):
         form = self.form_class(None)
@@ -175,21 +166,13 @@ class Add_Song(View):
 #            song.pk = form.cleaned_data['id']
             # cleaned(Normalized data
            # (int)
-
-
             song.album = Album.objects.get(pk=6)
             song.file_type = form.cleaned_data['file_type']
             song.song_title = form.cleaned_data['song_title']
            # song.song_id = (int)form.cleaned_data["album_id"]
 
             song.save()
-
-
         return render(request, self.template_name, {'form':form})
-
-
-
-
 
 
 class LoginView(View):
@@ -197,7 +180,6 @@ class LoginView(View):
     form_class =loginForm
     error = ""
     template_name = 'music/login.html'
-
 
     def get(self, request):
         request.session['login'] = ''
@@ -223,16 +205,11 @@ class LoginView(View):
 
         user = authenticate(username=username, password=password)
         if user is not None:
-
             request.session['login'] = username
-
-
             return render(request, 'music/index.html',{'login':request.session['login']})
         else:
             error = "User not Exist"
             return render(request, self.template_name, {'form': form,'error':error})
-
-
 
 
 class UserFormView(View):
@@ -245,6 +222,7 @@ class UserFormView(View):
         form = self.form_class(None)
         return render(request, self.template_name, {'form':form})
     #to tackle post request
+
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():

@@ -9,6 +9,7 @@ from django.views import generic
 from django.views.generic import UpdateView, CreateView, DeleteView
 from .models import Product, Comment, Rating
 from .forms import RegisterForm
+import requests
 
 
 class Homeview(generic.ListView):
@@ -81,7 +82,8 @@ class SignUpView(generic.View):
             email = form.cleaned_data['email']
             user.set_password(password)
             user.save()
-            # user authentication
+            # SignUp Using api
+           # response = requests.post('http://127.0.0.1:8000/api/signup', data={'username': username, 'password': password, 'email': email})
             user = authenticate(username=username, password=password)
             if user is not None:
                 user.email = email
