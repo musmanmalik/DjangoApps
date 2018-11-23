@@ -13,6 +13,7 @@
         <list>
           <option value="music.views.fsock" />
           <option value="django.contrib.sessions.serializers.serialize" />
+          <option value="rest_framework.serializers.deserialize" />
         </list>
       </option>
     </inspection_tool>

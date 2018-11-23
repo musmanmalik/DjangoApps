@@ -7,6 +7,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.views.generic import UpdateView, CreateView, DeleteView
+from rest_framework import serializers
+
 from .models import Product, Comment, Rating
 from .forms import RegisterForm
 import requests
@@ -15,9 +17,13 @@ import requests
 class Homeview(generic.ListView):
     template_name = 'product/Home.html'
     context_object_name = 'products'
-
+    """Getting data using api"""
     def get_queryset(self):
-        return Product.objects.all()
+    #     return Product.objects.all()
+    #getting data using api
+        response = requests.get('http://127.0.0.1:8000/api/products')
+        print(response)
+        return response.json()
 
 
 class ProductUpdate(UpdateView):
